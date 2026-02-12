@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopami Admin</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login screen (shown when not authenticated) -->
+    <div id="login-screen" class="login-screen">
+      <div class="login-card">
+        <h1>Dopami Admin</h1>
+        <p class="login-subtitle">Sign in to manage your app</p>
+        <form id="login-form">
+          <label for="api-url">API Base URL</label>
+          <input type="url" id="api-url" placeholder="http://localhost:8000" value="http://localhost:8000" required>
+          <label for="jwt-secret">JWT Secret</label>
+          <input type="password" id="jwt-secret" placeholder="Your JWT_SECRET" required>
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <p id="login-error" class="error-text" hidden></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main layout (shown when authenticated) -->
+    <div id="main-layout" class="main-layout" hidden>
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <h2>Dopami</h2>
+          <span class="sidebar-badge">Admin</span>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#dashboard" class="nav-link active" data-page="dashboard">
+            <span class="nav-icon">&#9632;</span> Dashboard
+          </a>
+          <a href="#content" class="nav-link" data-page="content">
+            <span class="nav-icon">&#9998;</span> Content
+          </a>
+          <a href="#users" class="nav-link" data-page="users">
+            <span class="nav-icon">&#9786;</span> Users
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <button id="logout-btn" class="btn btn-ghost btn-block">Sign Out</button>
+        </div>
+      </aside>
+      <main class="content-area">
+        <div id="page-container"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal backdrop -->
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <div id="modal" class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title"></h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+      <div id="modal-footer" class="modal-footer"></div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/pages/login.js"></script>
+  <script src="js/pages/dashboard.js"></script>
+  <script src="js/pages/content.js"></script>
+  <script src="js/pages/users.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
